@@ -230,6 +230,7 @@ static void __stdcall paintTraverse(unsigned int panel, bool forceRepaint, bool 
         Misc::spectatorList();
         Misc::watermark();        
         Visuals::hitMarker();
+        Visuals::hitMarkerDamageIndicator();
     }
     hooks.panel.callOriginal<void, 41>(panel, forceRepaint, allowForce);
 }
@@ -334,6 +335,7 @@ static bool __stdcall fireEventClientSide(GameEvent* event) noexcept
             Misc::playHitSound(*event);
             Visuals::hitEffect(event);                
             Visuals::hitMarker(event);
+            Visuals::hitMarkerDamageIndicator(event);
             break;
         }
     }

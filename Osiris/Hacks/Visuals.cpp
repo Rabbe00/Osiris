@@ -312,6 +312,47 @@ void Visuals::hitEffect(GameEvent* event) noexcept
     }
 }
 
+void Visuals::hitMarkerDamageIndicator(GameEvent* event) noexcept
+{
+    if (!config.visuals.hitMarkerDamageIndicator) return;
+
+    static std::vector<HitMarkerInfo> hitMarkerInfo;
+
+    if (event && interfaces.engine->getPlayerForUserID(event->getInt("attacker")) ==
+        interfaces.engine->getLocalPlayer())
+    {
+        hitMarkerInfo.push_back({
+            memory.globalVars->realtime + config.visuals.hitMarkerTime, event->getInt("dmg_health")
+        });
+        return;
+    }
+
+    if (hitMarkerInfo.empty() || event) return;
+
+    const auto [width, height] = interfaces.surface->getScreenSize();
+
+    for (size_t i = 0; i < hitMarkerInfo.size(); i++)
+    {
+        const auto diff = hitMarkerInfo.at(i).hitMarkerExpTime - memory.globalVars->realtime;
+
+        if (diff < 0.f)
+        {
+            hitMarkerInfo.erase(hitMarkerInfo.begin() + i);
+            continue;
+        }
+
+        const auto dist = 24;
+        const auto ratio = 1.f - diff / 0.8f;
+        const auto alpha = diff * 255;
+
+        const auto font_id = 17;
+        interfaces.surface->setTextFont(font_id);
+        interfaces.surface->setTextPosition(width / 2 + 6 + ratio * dist / 2, height / 2 + 6 + ratio * dist);
+        interfaces.surface->setTextColor(255, 255, 255, alpha);
+        interfaces.surface->printText(std::to_wstring(hitMarkerInfo.at(i).hitMarkerDmg));
+    }
+}
+
 void Visuals::hitMarker(GameEvent* event) noexcept
 {
     if (config.visuals.hitMarker == 0)

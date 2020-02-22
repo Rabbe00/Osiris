@@ -185,6 +185,7 @@ public:
         float hitEffectTime{ 0.6f };
         int hitMarker{ 0 };
         float hitMarkerTime{ 0.6f };
+        bool hitMarkerDamageIndicator{ true };
         int playerModelT{ 0 };
         int playerModelCT{ 0 };
 
