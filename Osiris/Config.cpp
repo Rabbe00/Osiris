@@ -703,7 +703,6 @@ void Config::load(size_t id) noexcept
         if (visualsJson.isMember("Hit effect time")) visuals.hitEffectTime = visualsJson["Hit effect time"].asFloat();
         if (visualsJson.isMember("Hit marker")) visuals.hitMarker = visualsJson["Hit marker"].asInt();
         if (visualsJson.isMember("Hit marker time")) visuals.hitMarkerTime = visualsJson["Hit marker time"].asFloat();
-        if (visualsJson.isMember("Hit marker Damage Indicator")) visuals.hitMarkerDamageIndicator = visualsJson["Hit marker Damage Indicator"].asBool();
         if (visualsJson.isMember("Playermodel T")) visuals.playerModelT = visualsJson["Playermodel T"].asInt();
         if (visualsJson.isMember("Playermodel CT")) visuals.playerModelCT = visualsJson["Playermodel CT"].asInt();
 
@@ -801,7 +800,6 @@ void Config::load(size_t id) noexcept
         if (miscJson.isMember("Menu key")) misc.menuKey = miscJson["Menu key"].asInt();
         if (miscJson.isMember("Anti AFK kick")) misc.antiAfkKick = miscJson["Anti AFK kick"].asBool();
         if (miscJson.isMember("Auto strafe")) misc.autoStrafe = miscJson["Auto strafe"].asBool();
-        if (miscJson.isMember("Auto strafe Key")) misc.autoStrafeKey = miscJson["Auto strafe Key"].asInt();
         if (miscJson.isMember("Bunny hop")) misc.bunnyHop = miscJson["Bunny hop"].asBool();
         if (miscJson.isMember("Custom clan tag")) misc.customClanTag = miscJson["Custom clan tag"].asBool();
         if (miscJson.isMember("Clock tag")) misc.clocktag = miscJson["Clock tag"].asBool();
@@ -896,6 +894,7 @@ void Config::load(size_t id) noexcept
         if (miscJson.isMember("Fix tablet signal")) misc.fixTabletSignal = miscJson["Fix tablet signal"].asBool();
         if (miscJson.isMember("Max angle delta")) misc.maxAngleDelta = miscJson["Max angle delta"].asFloat();
         if (miscJson.isMember("Fake prime")) misc.fakePrime = miscJson["Fake prime"].asBool();
+        if (miscJson.isMember("Draw aimbot FOV")) misc.drawAimbotFov = miscJson["Draw aimbot FOV"].asBool();
     }
 
     {
@@ -1469,7 +1468,6 @@ void Config::save(size_t id) const noexcept
         visualsJson["Hit effect time"] = visuals.hitEffectTime;
         visualsJson["Hit marker"] = visuals.hitMarker;
         visualsJson["Hit marker time"] = visuals.hitMarkerTime;
-        visualsJson["Hit marker Damage Indicator"] = visuals.hitMarkerDamageIndicator;
         visualsJson["Playermodel T"] = visuals.playerModelT;
         visualsJson["Playermodel CT"] = visuals.playerModelCT;
 
@@ -1557,7 +1555,6 @@ void Config::save(size_t id) const noexcept
         miscJson["Menu key"] = misc.menuKey;
         miscJson["Anti AFK kick"] = misc.antiAfkKick;
         miscJson["Auto strafe"] = misc.autoStrafe;
-        miscJson["Auto strafe Key"] = misc.autoStrafeKey;
         miscJson["Bunny hop"] = misc.bunnyHop;
         miscJson["Custom clan tag"] = misc.customClanTag;
         miscJson["Clock tag"] = misc.clocktag;
@@ -1634,6 +1631,7 @@ void Config::save(size_t id) const noexcept
         miscJson["Fix tablet signal"] = misc.fixTabletSignal;
         miscJson["Max angle delta"] = misc.maxAngleDelta;
         miscJson["Fake prime"] = misc.fakePrime;
+        miscJson["Draw aimbot FOV"] = misc.drawAimbotFov;
     }
 
     {
