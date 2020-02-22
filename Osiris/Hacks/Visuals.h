@@ -8,6 +8,10 @@
 #include "../SDK/Engine.h"
 #include "../SDK/EntityList.h"
 
+struct HitMarkerInfo {
+    float hitMarkerExpTime;
+    int hitMarkerDmg;
+};
 enum class FrameStage;
 class GameEvent;
 
@@ -26,6 +30,7 @@ namespace Visuals {
     void applyScreenEffects() noexcept;
     void hitEffect(GameEvent* = nullptr) noexcept;
     void hitMarker(GameEvent* = nullptr) noexcept;
+    void hitMarkerDamageIndicator(GameEvent* = nullptr) noexcept;
 
     constexpr void disablePostProcessing() noexcept
     {
